@@ -1,0 +1,14 @@
+floor divison:
+when execute divison that normally returns a float type variable will -
+return a interger instead
+
+Python code: 
+36 // 5
+
+Java Code:
+Math.floor(36/5)
+
+C++ Code:
+#include <cmath>
+
+floor(36/5)
