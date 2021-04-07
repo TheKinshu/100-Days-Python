@@ -22,14 +22,13 @@ def guessNumber():
 
     # TODO Generate a number
     answer = random.randint(1, 100)
-    print(f"pssst, the correct answer is {answer}")
     difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
     lives = 0
 
     if difficulty == 'easy':
         lives = 10
     elif difficulty == 'hard':
-        lives = 5
+        lives = 6
 
     game = True
 

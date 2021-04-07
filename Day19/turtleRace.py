@@ -4,7 +4,7 @@ import random as re
 s = Screen()
 userBet = s.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a colour: ")
 s.setup(500,400)
-colours = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+colours = ['red', 'orange', 'wheat', 'green', 'blue', 'purple']
 
 y = [-125, -75, -25, 25, 75, 125]
 
@@ -22,14 +22,17 @@ if userBet:
 
 while is_race_on:
     for turtle in allTurtle:
+        randomeDis = re.randint(0, 10)
+        turtle.forward(randomeDis)
         if turtle.xcor() > 205:
             is_race_on = False
             win = turtle.pencolor()
             if userBet == win:
                 print(f"You've won! The {win} turtle won!")
+                is_race_on = False
             else:
                 print(f"You lose, the {win} turtle won.")
-        randomeDis = re.randint(0, 10)
-        turtle.forward(randomeDis)
+                is_race_on = False
+
 
 s.exitonclick()
