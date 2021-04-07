@@ -22,14 +22,14 @@ for (index, row) in student_data_frame.iterrows():
 
 #TODO 1. Create a dictionary in this format:
 data = pandas.read_csv('.\Day26\/nato_phonetic_alphabet.csv')
-alpha_dict = {row.letter: row.code for (index, row) in data.iterrows()}
+alpha_dict = [{row.letter: row.code for (index, row) in data.iterrows()}]
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-
-word = input("Enter a word: ")
-word_alpha = []
-for character in word.upper():
-    if character in alpha_dict:
-        word_alpha.append(alpha_dict[character])
-
-print(word_alpha)
+print(alpha_dict[0])
+word = input("Enter a word: ").upper()
+try:
+    word_alpha = [alpha_dict[character] for character in word]
+except KeyError:
+    print('Sorry, only letters are accpeted')
+else:
+    print(word_alpha)

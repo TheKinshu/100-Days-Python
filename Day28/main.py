@@ -1,3 +1,4 @@
+from Day31.main import BACKGROUND_COLOR
 from tkinter import *
 import math
 # ---------------------------- CONSTANTS ------------------------------- #
