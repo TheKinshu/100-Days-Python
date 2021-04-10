@@ -11,6 +11,7 @@ month = now.month
 day_of_week = now.weekday() + 1
 
 
+
 with open("./Day32/quotes.txt", 'r') as file:
     quote = file.readlines()
 

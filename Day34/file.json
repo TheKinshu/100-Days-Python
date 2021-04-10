@@ -1,0 +1,102 @@
+[
+    {
+       "category":"General Knowledge",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"There are 86400 seconds in a day.",
+       "correct_answer":"True",
+       "incorrect_answers":[
+          "False"
+       ]
+    },
+    {
+       "category":"History",
+       "type":"boolean",
+       "difficulty":"easy",
+       "question":"The United States was a member of the League of Nations.",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"Entertainment: Video Games",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"Metal Gear Solid V: The Phantom Pain runs on the Fox Engine.",
+       "correct_answer":"True",
+       "incorrect_answers":[
+          "False"
+       ]
+    },
+    {
+       "category":"Entertainment: Video Games",
+       "type":"boolean",
+       "difficulty":"easy",
+       "question":"In the &quot;Half-Life&quot; series, &quot;H.E.V&quot; stands for &quot;Hazardous Evasiveness Vest&quot;",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"Animals",
+       "type":"boolean",
+       "difficulty":"easy",
+       "question":"Rabbits are rodents.",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"Entertainment: Video Games",
+       "type":"boolean",
+       "difficulty":"easy",
+       "question":"Ana was added as a new hero for the game Overwatch on July 19th, 2016.",
+       "correct_answer":"True",
+       "incorrect_answers":[
+          "False"
+       ]
+    },
+    {
+       "category":"Entertainment: Film",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"The movie &quot;Tron&quot; received an Oscar nomination for Best Visual Effects.",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"Entertainment: Cartoon & Animations",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"Snagglepuss was part of the Yogi Yahooies in the 1977 show Scooby&#039;s All-Star Laff-a-Lympics.",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"Politics",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"Jeb Bush was elected as Governor of Florida in 2002, starting his political career.",
+       "correct_answer":"False",
+       "incorrect_answers":[
+          "True"
+       ]
+    },
+    {
+       "category":"General Knowledge",
+       "type":"boolean",
+       "difficulty":"medium",
+       "question":"The British organisation CAMRA stands for The Campaign for Real Ale.",
+       "correct_answer":"True",
+       "incorrect_answers":[
+          "False"
+       ]
+    }
+ ]

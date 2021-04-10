@@ -2,3 +2,5 @@ prettytable
 colorgram
 pandas
 pyperclip
+requests
+twilio
