@@ -4,3 +4,6 @@ pandas
 pyperclip
 requests
 twilio
+bs4
+lxml
+spotipy
