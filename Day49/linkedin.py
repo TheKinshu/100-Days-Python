@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 
 EMAIL = "kc007919@gmail.com"
-number = "289-395-1078"
+number = ""
 
 URL = "https://www.linkedin.com/jobs/search/?f_AL=true&geoId=101174742&keywords=python%20developer&location=Canada&sortBy=R"
 
