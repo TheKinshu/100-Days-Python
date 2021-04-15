@@ -1,8 +1,8 @@
 from selenium import webdriver
 import time
 
-EMAIL = "imriveno@gmail.com"
-PASSWORD = "kc5cg838"
+EMAIL = ""
+
 
 URL = "https://tinder.com/"
 
