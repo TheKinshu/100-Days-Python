@@ -35,8 +35,8 @@ class InternetSpeedTwitterBot:
         self.driver.find_element_by_xpath("//div[@data-testid='LoginForm_Login_Button']").click()
         
 
-PROMISED_UP = 75
-PROMISED_DOWN = 10
+PROMISED_UP = 10
+PROMISED_DOWN = 75
 
 yourEmail = "your@email.com"
 yourPassword = "some sort of password"
