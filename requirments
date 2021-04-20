@@ -9,3 +9,5 @@ lxml
 spotipy
 selenium
 flask
+Flask-WTF
+Flask-Bootstrap

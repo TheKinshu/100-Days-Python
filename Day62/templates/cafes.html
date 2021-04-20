@@ -1,0 +1,45 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	    <table table class="table">
+        {% for cafe in cafes%}
+          <tr>
+            {% for i in range((cafe|length)) %}
+                {% if cafe == cafes[0] %}
+                    <th>{{ cafe[i] }}</th>
+                {% else %}
+                    {% if i == 1 %}
+                      <td> <a href="{{ cafe[i] }}">Maps Link</a></td>
+                    {% else %}
+                      <td> {{ cafe[i] }} </td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+  	  </table>
+
+      <p><a href="{{ url_for('home')}}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- [
+  ['Cafe Name', 'Location', 'Open', 'Close', 'Coffee', 'Wifi', 'Power'], 
+  ['Lighthaus', 'https://goo.gl/maps/2EvhB4oq4gyUXKXx9', '11AM', ' 3:30PM', '☕☕☕☕️', '💪💪', '🔌🔌🔌'], 
+  ['Esters', 'https://goo.gl/maps/13Tjc36HuPWLELaSA', '8AM', '3PM', '☕☕☕☕', '💪💪💪', '🔌'], 
+  ['Ginger & White', 'https://goo.gl/maps/DqMx2g5LiAqv3pJQ9', '7:30AM', '5:30PM', '☕☕☕', '✘', '🔌'], 
+  ['Mare Street Market', 'https://goo.gl/maps/ALR8iBiNN6tVfuAA8', '8AM', '1PM', '☕☕', '💪💪💪', '🔌🔌🔌']
+] -->
