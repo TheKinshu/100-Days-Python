@@ -10,8 +10,9 @@ from wtforms.validators import DataRequired
 import requests
 from pprint import pprint
 
-MOVIE_ID_API = "1f2d84049fe6d4cb12778c028ee992ba"
+MOVIE_API_KEY = "1f2d84049fe6d4cb12778c028ee992ba"
 themoviedb_endpoint = "https://api.themoviedb.org/3/search/movie"
+movieDetail_endpoint = "https://api.themoviedb.org/3/movie/"
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
@@ -74,10 +75,24 @@ def edit():
 def add():
     form = GetMovieForm()
     if form.validate_on_submit():
-        response = requests.get(themoviedb_endpoint + "?api_key={}&query={}".format(MOVIE_ID_API, form.title.data))
+        parameter = {
+            "api_key": MOVIE_API_KEY,
+            "query": form.title.data
+        }
+        response = requests.get(themoviedb_endpoint, params=parameter)
         response.raise_for_status()
         data = response.json()["results"]
-        return render_template("select.html")
+
+        movies = []
+
+        for movie in data:
+            new_movie = {
+                "id": movie['id'],
+                "title": movie['title'],
+                "release_date": movie['release_date']
+            }
+            movies.append(new_movie)
+        return render_template("select.html", movies=movies)
     return render_template("add.html", form=form)
 
 @app.route("/delete")
@@ -87,6 +102,25 @@ def delete():
     db.session.delete(movie_delete)
     db.session.commit()
     return redirect(url_for("home"))
+
+@app.route("/select")
+def select():
+    id = request.args.get("id")
+    parameter = {
+        "api_key": MOVIE_API_KEY,
+        "movie_id": id
+    }    
+    response = requests.get(movieDetail_endpoint + id, params=parameter)
+    response.raise_for_status()
+    print(response.url)
+    data = response.json()
+    image = "https://image.tmdb.org/t/p/original".format(data["poster_path"])
+    year = data["release_date"].split("-")[0]
+    movie = Movie(title=data["title"],img_url=image, year=year, description=data["overview"])
+    db.session.add(movie)
+    db.session.commit()
+    return redirect(url_for("edit"))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
