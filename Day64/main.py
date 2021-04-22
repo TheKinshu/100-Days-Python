@@ -3,14 +3,14 @@ from flask.wrappers import Response
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from sqlalchemy.orm import query
+from sqlalchemy import desc
 from wtforms import StringField, SubmitField
 from wtforms.fields.core import FloatField, IntegerField
 from wtforms.validators import DataRequired
-import requests
+import requests,os
 from pprint import pprint
 
-MOVIE_API_KEY = "1f2d84049fe6d4cb12778c028ee992ba"
+MOVIE_API_KEY = os.getenv("MOVIEDB_KEY")
 themoviedb_endpoint = "https://api.themoviedb.org/3/search/movie"
 movieDetail_endpoint = "https://api.themoviedb.org/3/movie/"
 
@@ -41,9 +41,9 @@ class Movie(db.Model):
     title = db.Column(db.String(30), unique=True, nullable=False)
     year = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(80), nullable=False)
-    rating = db.Column(db.Float, nullable=False)
-    ranking = db.Column(db.Integer, nullable=False)
-    review = db.Column(db.String(30), nullable=False)
+    rating = db.Column(db.Float)
+    ranking = db.Column(db.Integer)
+    review = db.Column(db.String(30))
     img_url = db.Column(db.String(80), nullable=False)
 
     def __repr__(self) -> str:
@@ -53,8 +53,14 @@ class Movie(db.Model):
 # Flask Server Routing
 @app.route("/", methods=["GET", "POST"])
 def home():
-    all_movie = db.session.query(Movie).all()
-    print(all_movie)
+    all_movie = db.session.query(Movie).order_by(Movie.rating.desc()).all()
+
+    for index in range(len(all_movie)):
+        all_movie[index].ranking =  index + 1
+
+
+    db.session.commit()
+
     return render_template("index.html", movies=all_movie)
 
 @app.route("/edit", methods=["GET", "POST"])
@@ -64,8 +70,8 @@ def edit():
     movie_update = Movie.query.get(id)
 
     if form.validate_on_submit():
-        movie_update.rating = float(form.rating.data)
         movie_update.review = form.review.data
+        movie_update.rating = (form.rating.data)
         db.session.commit()
         return redirect(url_for('home'))
         
@@ -112,14 +118,16 @@ def select():
     }    
     response = requests.get(movieDetail_endpoint + id, params=parameter)
     response.raise_for_status()
-    print(response.url)
+
     data = response.json()
-    image = "https://image.tmdb.org/t/p/original".format(data["poster_path"])
+    image = "https://image.tmdb.org/t/p/original{}".format(data["poster_path"])
     year = data["release_date"].split("-")[0]
     movie = Movie(title=data["title"],img_url=image, year=year, description=data["overview"])
     db.session.add(movie)
     db.session.commit()
-    return redirect(url_for("edit"))
+
+    find_movie = Movie.query.filter_by(title=data["title"]).first()
+    return redirect(url_for("edit", id=find_movie.id))
 
 
 if __name__ == '__main__':
