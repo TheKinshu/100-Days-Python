@@ -1,0 +1,2 @@
+Day 70 is to deploy the web-blog created in Day 69 to Heroku. For this -
+Day 70 files are in https://github.com/TheKinshu/Blog-Capstone.
