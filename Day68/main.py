@@ -39,6 +39,7 @@ def register():
         if not User.query.filter_by(email=email).first() == None:
             flash("This email account has already been registered in our database.")
             return redirect(url_for("register"))
+            
         hash_password = generate_password_hash(password=password, method="pbkdf2:sha256", salt_length=8)
         new_user = User(
             email=email, 
